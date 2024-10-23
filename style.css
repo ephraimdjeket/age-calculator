@@ -74,8 +74,6 @@ h6 {
 .age-calculator-wrapper {
   display: flex;
   flex-direction: column;
-  width: 840px;
-  height: 651px;
   border-radius: 24px 24px 100px 24px;
   background-color: var(--White);
   padding: 3.5rem;
@@ -114,6 +112,7 @@ input:focus {
 }
 
 .input-group label {
+  padding-bottom: 0.5rem;
   font-size: var(--smallFont-lg);
 }
 
@@ -158,10 +157,106 @@ input:focus {
   font-size: var(--headingFont-lg);
   font-weight: 700;
   letter-spacing: -2px;
-  line-height: 110%;
+  line-height: 140%;
+  padding: 0;
 }
 
 .calc-results span {
   color: var(--Purple);
   padding-right: 0.5rem;
+  font-style: italic;
+}
+
+@media screen and (max-width: 936px) {
+  body {
+    height: 100%;
+  }
+
+  .age-calculator-wrapper {
+    display: flex;
+    flex-direction: column;
+    border-radius: 24px 24px 100px 24px;
+    background-color: var(--White);
+    padding: 3rem 1.5rem;
+    margin-top: 5.5rem;
+  }
+
+  .age-calculator-content {
+    width: 343px;
+  }
+
+  input {
+    padding-left: 1rem;
+    width: 5.479rem;
+    height: 3.375rem;
+  }
+
+  .input-group {
+    font-size: var(--regularFont-sm);
+  }
+
+  .input-group label {
+    padding-bottom: 0.25rem;
+    font-size: var(--smallFont-sm);
+  }
+
+  .input-group:nth-child(2) {
+    padding: 0rem 1rem;
+  }
+
+  .line-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 4rem 0rem;
+  }
+
+  .line {
+    background-color: var(--Light-grey);
+    width: 100%;
+    height: 1px;
+  }
+
+  .svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .calculate-btn {
+    position: absolute;
+    right: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--Purple);
+    width: 4rem;
+    height: 4rem;
+    border: none;
+    border-radius: 100%;
+    transition: 0.5s ease;
+    cursor: pointer;
+  }
+
+  .calc-results {
+    list-style: none;
+    font-size: var(--headingFont-sm);
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 140%;
+    padding: 0;
+  }
+}
+
+.errorInput,
+.errorMessage {
+  color: var(--Light-red);
+}
+
+.errorMessage {
+  font-size: var(--smallFont-lg);
+  font-style: italic;
+  font-weight: 400;
+  padding-top: 0.5rem;
 }
