@@ -11,6 +11,9 @@ const monthInput = document.getElementById("month");
 const yearInput = document.getElementById("year");
 const inputs = document.querySelectorAll("input");
 const inputGroups = document.querySelectorAll(".input-group");
+const yearResult = document.getElementById("yearText");
+const monthResult = document.getElementById("monthText");
+const dayResult = document.getElementById("dayText");
 
 const labels = ["day", "month", "year"];
 
@@ -29,7 +32,14 @@ formEl.addEventListener("submit", (e) => {
     convertedDayInput === null ||
     convertedMonthInput === null ||
     convertedYearInput === null ||
-    (convertedDayInput === 31 && [2, 4, 6, 9, 11].includes(convertedMonthInput))
+    (convertedDayInput === 31 &&
+      [2, 4, 6, 9, 11].includes(convertedMonthInput)) ||
+    convertedDayInput > 31 ||
+    convertedDayInput < 0 ||
+    convertedMonthInput > 12 ||
+    convertedMonthInput < 0 ||
+    convertedYearInput < 1920 ||
+    convertedYearInput > 2024
   ) {
     inputGroups.forEach((inputGroup, index) => {
       if (!inputGroup.querySelector(".errorMessage")) {
@@ -44,5 +54,27 @@ formEl.addEventListener("submit", (e) => {
       }
     });
   } else {
+    inputGroups.forEach((inputGroup) => {
+      const errorMessage = inputGroup.querySelector(".errorMessage");
+      if (errorMessage) {
+        errorMessage.remove();
+        inputGroup.classList.remove("errorInput");
+        inputs.forEach((input) => {
+          input.style.border = "1px solid var(--Smokey-grey)";
+        });
+      }
+    });
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1;
+    const currentDay = currentDate.getDate();
+
+    const calculatedYear = `${currentYear - convertedYearInput}`;
+    const calculatedMonth = `${currentMonth - convertedMonthInput}`;
+    const calculatedDay = `${currentDay - convertedDayInput}`;
+
+    yearResult.innerText = calculatedYear.toString().padStart(2, "0");
+    monthResult.innerText = calculatedMonth.toString().padStart(2, "0");
+    dayResult.innerText = calculatedDay.toString().padStart(2, "0");
   }
 });
