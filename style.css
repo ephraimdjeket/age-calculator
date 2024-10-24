@@ -138,8 +138,8 @@ input:focus {
   justify-content: center;
   align-items: center;
   background-color: var(--Purple);
-  width: 6rem;
-  height: 6rem;
+  width: 96px;
+  height: 86px;
   border: none;
   border-radius: 50%;
   transition: 0.5s ease;
